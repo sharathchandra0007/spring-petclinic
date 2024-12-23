@@ -1,63 +1,62 @@
-## steps 
-* Java based on spring-petclinc application 
-* pull request based `develop`
-* spring-petclinc apllication based create Multi stage Dockerfile on `develop` branch 
-
-* Execute dockerfile use command 
-
-```sh
+# Steps
+* Java-based Spring Petclinic application
+* Pull request-based development
+* Create a multi-stage Dockerfile for the Spring Petclinic application on the `develop`    branch
+* Execute Dockerfile Using Command
+```bash
 # Create image command
-docker image build -t <imagename:tag> <dockerfilename or . (. consider dockerfile)>
-# Check image created or not 
+docker image build -t spc:1.0 .
+# Check if the image was created
 docker image ls
-# Lets check your image based on container runing or not its only our checking purpose
-docker container run -P -d --name <container name give any name> <your image name: tag>
-# Lets check container running or not means check conntainer status 
-docker container ls 
+# Check if your image is running in a container (for verification purposes)
+docker container run -P -d --name spc:1.0
+# Check if the container is running (to verify container status)
+docker container ls
 ```
-
-* Now what do your image scan with trivy how to do below steps follow:-
-   1. first fall install trivy in your  vm or ec2
-
-```sh
+* Image Scanning with Trivy
+* Now, to scan your image with Trivy, follow these steps:
+* First, install Trivy on your VM or EC2 instance.
+```bash
 sudo apt-get install wget apt-transport-https gnupg lsb-release
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
 sudo apt-get update
-sudo apt-get install trivy -y 
+sudo apt-get install trivy -y
 ```
-* whenever trivy installed completed after image scan follow below command 
-
+### After Trivy is installed, scan your image using the following command:
 ```bash
-trivy <docker image:tag>
+trivy spc:1.0
 ```
-##########################################################################################
-* push based `release` 
-* Multiple develper changes done so we agian Scan docker image   
+###########################################################################################
 
-* On `release` branch Scan docker image with trivy
-* whenever trivy installed completed after image scan follow below command 
-
+* Push Based `Release`
+* Multiple developers have made changes, so we will scan the Docker image again.
+* On the release branch, scan the Docker image with Trivy.
+### After Trivy is installed, use the following command:
 ```bash
-trivy <docker image:tag>
+trivy spc:1.0
 ```
-above showing vulnerabilities or some reports 
-
-* Now whenever image scan completed we are go to the image push to the Registry 
-  like a docker hub or ECR or ACR.
-
-* Now we are push to the docker hub how to do that below following steps 
-
+* The output will show vulnerabilities or reports.
+* Pushing the Image to a Registry
+* Once the image scan is completed, we can push the image to a registry such as Docker Hub, ECR, or ACR.
+### To push to Docker Hub, follow these steps:
 ```bash
 docker login
-docker image tag <imagename:tag> <your registry account/reponame>
-docker image push <your registry account/reponame>
+docker image tag spc:1.0 longflew/javaimagecicd:1.0
+docker image push longflew/javaimagecicd:1.0
 ```
-
-* Now ready image for the deployment so we need create a deployment folder into create a deployment manifestfile 
-* deployment file execute we need cluster so setup any cloud cluster EKS OR AKS on-primese cluster
-* How to execute file below command follow 
- 
-* 
+##### Note: Ensure k8s Cluster(AKS or EKS) will be created 
+### Installing helm 
+* [Refer Here](https://helm.sh/docs/intro/install/) for installing Helm 
+* Once installation completed run the following commands
+* To Create a new helm chart repo `helm create spc-chart`
+* Deploy the application in k8s using helm , the command will be
+ `helm install <Release-Name> spc-chart`
+* Check the appliocation running or not using the k8s commands 
+```bash
+kubectl get po
+kubectl get svc
+```
+* Take the IP or DNS of the service and open new Browser and paste the IP or DNS.
 
 
