@@ -4,7 +4,7 @@ RUN cd spring-petclinic && mvn clean package
 
 
 FROM amazoncorretto:17-alpine-jdk
-LABEL author="GopiKrishnaLaxmiKanth"
+LABEL author="LaxmiKanthGopiKrishna"
 LABEL purpose="project"
 ARG USER="devuser"
 ARG GROUP="dev"
