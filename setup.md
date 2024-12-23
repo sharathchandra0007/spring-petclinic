@@ -51,12 +51,24 @@ docker image push longflew/javaimagecicd:1.0
 * Once installation completed run the following commands
 * To Create a new helm chart repo `helm create spc-chart`
 * Deploy the application in k8s using helm , the command will be
- `helm install <Release-Name> spc-chart`
+ `helm install spc-release spc-chart`
 * Check the appliocation running or not using the k8s commands 
 ```bash
 kubectl get po
 kubectl get svc
 ```
 * Take the IP or DNS of the service and open new Browser and paste the IP or DNS.
+
+### Upgrade docker image in helm
+* Whenever we upgrade the Docker image in Helm, the deployment manifest file is also automatically updated with the new image
+* After making further changes, we updated the values.yaml file to modify the image tag.
+* use the following command:
+```bash
+# docker image upgrade 
+helm upgrade spc-release spc-chart -f values.yaml --set image.tag=new-image-tag
+
+# Verify the Upgrade
+helm get all myapp
+```
 
 
