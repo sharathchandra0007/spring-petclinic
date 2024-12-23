@@ -68,7 +68,7 @@ kubectl get svc
 helm upgrade spc-release spc-chart -f values.yaml --set image.tag=new-image-tag
 
 # Verify the Upgrade
-helm get all myapp
+helm get all spc-release
 ```
 
 
