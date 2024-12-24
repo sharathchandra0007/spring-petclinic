@@ -1,4 +1,7 @@
 # Steps
+
+### DEVELOP BRANCH PULL BASED
+-----------------------------
 * Java-based Spring Petclinic application
 * Pull request-based development
 * Create a multi-stage Dockerfile for the Spring Petclinic application on the `develop`    branch
@@ -30,8 +33,10 @@ sudo apt-get install trivy -y
 trivy image spc:1.0
 trivy image <image:tag>
 ```
-###########################################################################################
+#############################################################################################################################################################################
 
+### RELEASE BRANCH PUSH BASED
+-----------------------------
 * Push Based `Release`
 * Multiple developers have made changes, so we will scan the Docker image again.
 * On the release branch, scan the Docker image with Trivy.
