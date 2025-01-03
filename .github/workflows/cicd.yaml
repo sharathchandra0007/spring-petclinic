@@ -37,7 +37,6 @@ jobs:
       - name: scan image 
         run: |
           trivy image "sharathchandra007/my-image:1.0"
-          trivy image "sharathchandra007/my-image:1.0"
-            
+                    
 
   
