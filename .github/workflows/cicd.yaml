@@ -24,6 +24,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: "true"
-          tags: "sharathchandra007/my-image:1.0"   
+          tags: "sharathchandra007/my-image:1.0"
+          
+      - name: run trivy scan
+        uses: aquasecurity/trivy-action@v0.43.0
+        with: 
+          image-ref: "sharathchandra007/my-image:1.0"
+          format: "sharath"
+          output: 'trivy-results.sharath'      
 
   
