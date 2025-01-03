@@ -25,5 +25,4 @@ jobs:
           file: ./Dockerfile
           push: "true"
           tags: "sharathchandra007/my-image:1.0"   
-
   
