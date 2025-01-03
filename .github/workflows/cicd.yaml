@@ -27,7 +27,7 @@ jobs:
           tags: "sharathchandra007/my-image:1.0"
           
       - name: run trivy scan
-        uses: aquasecurity/trivy-action@v0.51.1
+        uses: aquasecurity/trivy-action@v0.57.1
         with: 
           image-ref: "sharathchandra007/my-image:1.0"
           format: "sharath"
